@@ -7,7 +7,15 @@
     "docker:build": "docker build -t mpozhydaiev/tickets_auth .",
     "docker:push": "docker push mpozhydaiev/tickets_auth",
     "addSecret": "kubectl create secret generic jwt-secret --from-literal=jwt=<secretString>",
-    "start": "ts-node-dev src/index.ts"
+    "start": "ts-node-dev src/index.ts",
+    "test": "jest --watchAll --no-cache"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node",
+    "setupFilesAfterEnv": [
+      "./src/test/setup.ts"
+    ]
   },
   "keywords": [],
   "author": "",
@@ -20,13 +28,19 @@
     "express-async-errors": "^3.1.1",
     "express-validator": "^6.14.2",
     "jsonwebtoken": "^8.5.1",
+    "mongodb-memory-server": "^8.7.0",
     "mongoose": "^6.4.0",
-    "ts-node-dev": "^2.0.0",
-    "typescript": "^4.7.3"
+    "ts-node-dev": "^2.0.0"
   },
   "devDependencies": {
     "@types/cookie-session": "^2.0.44",
     "@types/cors": "^2.8.12",
-    "@types/jsonwebtoken": "^8.5.8"
+    "@types/jest": "^28.1.2",
+    "@types/jsonwebtoken": "^8.5.8",
+    "@types/supertest": "^2.0.12",
+    "jest": "^28.1.1",
+    "supertest": "^6.2.3",
+    "ts-jest": "^28.0.5",
+    "typescript": "^4.7.4"
   }
 }
