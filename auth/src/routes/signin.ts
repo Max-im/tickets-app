@@ -9,7 +9,6 @@ import { Password } from '../services/password';
 
 const router = express.Router();
 
-
 router.post('/api/users/signin', 
     [
         body('email').isEmail().withMessage('Invalid Email'),
@@ -31,7 +30,7 @@ router.post('/api/users/signin',
             throw new BadRequest('Invalid Credentials');
         }
 
-        const jwtUser = jwt.sign({ id: existingUser.id, email: existingUser.email}, process.env.JWT_KEY!);
+        const jwtUser = jwt.sign({id: existingUser.id, email: existingUser.email}, process.env.JWT_KEY!);
 
         req.session = {
             jwt: jwtUser
@@ -40,6 +39,5 @@ router.post('/api/users/signin',
         return res.status(200).send(existingUser);
     }
 );
-
 
 export {router as signinUserRouter};
