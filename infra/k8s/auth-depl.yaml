@@ -15,8 +15,13 @@ spec:
       containers:
         - name: auth
           image: mpozhydaiev/tickets_auth
-          ports:
-            - containerPort: 3000
+          # kubectl create secret generic jwt-secret --from-literal=jwt=<secretString>
+          env: 
+            - name: JWT_KEY
+              valueFrom: 
+                secretKeyRef: 
+                  name: jwt-secret
+                  key: JWT_KEY
 
 ---
 apiVersion: v1
