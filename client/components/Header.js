@@ -4,7 +4,7 @@ export default function Header({ currentUser }) {
   const links = [
     !currentUser && { label: 'Sign Up', url: '/auth/signup' },
     !currentUser && { label: 'Sign In', url: '/auth/signin' },
-    currentUser && { label: 'Sign Out', url: '/auth/sigout' },
+    currentUser && { label: 'Sign Out', url: '/auth/signout' },
   ];
 
   return (
