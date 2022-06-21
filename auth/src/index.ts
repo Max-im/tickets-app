@@ -6,7 +6,7 @@ const launch = async () => {
 
   try {
     await mongoose.connect('mongodb://auth-mongo-srv:27017/auth');
-    app.listen(3001, () => console.log('auth service run'));
+    app.listen(3000, () => console.log('auth service run'));
   } catch (err) {
     console.error(err)
   }
