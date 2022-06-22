@@ -2,7 +2,7 @@ import request from 'supertest';
 import { app } from '../../app';
 import { Ticket } from '../../models/Ticket';
 
-const url = '/api/tickets'
+const url = '/api/tickets';
 
 it ('has POST route for /api/tickets', async () => {
     const response = await request(app)
@@ -66,7 +66,7 @@ it ('create ticket with valid input data', async () => {
     await request(app)
         .post(url)
         .set('Cookie', global.signin())
-        .send({ title, price})
+        .send({ title, price })
         .expect(201);
 
     tickets = await Ticket.find({});
