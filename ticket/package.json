@@ -1,11 +1,11 @@
 {
-  "name": "tickets-auth",
+  "name": "tickets-ticket",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "docker:build": "docker build -t mpozhydaiev/tickets_auth .",
-    "docker:push": "docker push mpozhydaiev/tickets_auth",
+    "docker:build": "docker build -t mpozhydaiev/tickets_ticket .",
+    "docker:push": "docker push mpozhydaiev/tickets_ticket",
     "addSecret": "kubectl create secret generic jwt-secret --from-literal=jwt=<secretString>",
     "start": "ts-node-dev src/index.ts",
     "test": "jest --watchAll --no-cache"
