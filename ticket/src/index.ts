@@ -7,7 +7,7 @@ const launch = async () => {
 
   try {
     await mongoose.connect(process.env.MONGO_URI);
-    app.listen(3000, () => console.log('auth service run'));
+    app.listen(3000, () => console.log('tickets service run'));
   } catch (err) {
     console.error(err)
   }
