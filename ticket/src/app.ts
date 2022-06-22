@@ -1,8 +1,9 @@
 import express from 'express';
 import 'express-async-errors';
-import cors from 'cors';
 import coockieSession from 'cookie-session';
+import { errorHandler, NotFoundError, currentUser } from '@mpozhydaiev-tickets/common';
 
+import { createTicketRouter } from './routes/new';
 
 const app = express();
 
@@ -11,10 +12,14 @@ app.use(coockieSession({
   signed: false,
   secure: process.env.NODE_ENV !== 'test'
 }));
-app.use(cors());
+app.use(currentUser);
 app.use(express.json());
 
+app.use(createTicketRouter);
 
+app.all('*', () => {throw new NotFoundError()});
+
+app.use(errorHandler);
 
 export {app};
 
