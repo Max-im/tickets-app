@@ -1,7 +1,5 @@
 import request from 'supertest';
 import { app } from '../../app';
-import mongoose from 'mongoose';
-import { Ticket } from '../../models/Ticket';
 
 const url = '/api/tickets';
 
@@ -10,12 +8,14 @@ interface ITicketAttr {
     title: string;
 }
 
-const createTicket = async ({price, title}: ITicketAttr) => {
-    await request(app)
+export const createTicket = async ({price, title}: ITicketAttr) => {
+    const response = await request(app)
     .post(url)
     .set('Cookie', global.signin())
     .send({ title, price })
     .expect(201);
+
+    return response;
 }
 
 it ('return list of tickets', async () => {
