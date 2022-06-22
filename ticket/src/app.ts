@@ -5,6 +5,7 @@ import { errorHandler, NotFoundError, currentUser } from '@mpozhydaiev-tickets/c
 
 import { createTicketRouter } from './routes/new';
 import { showTicketRouter } from './routes/show';
+import { listTicketRouter } from './routes/list';
 
 const app = express();
 
@@ -18,6 +19,7 @@ app.use(express.json());
 
 app.use(createTicketRouter);
 app.use(showTicketRouter);
+app.use(listTicketRouter);
 
 app.all('*', () => {throw new NotFoundError()});
 
