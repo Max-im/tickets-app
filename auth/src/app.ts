@@ -2,13 +2,12 @@ import express from 'express';
 import 'express-async-errors';
 import cors from 'cors';
 import coockieSession from 'cookie-session';
+import { errorHandler, NotFoundError } from '@mpozhydaiev-tickets/common';
 
 import { currentUserRouter } from './routes/current-user';
 import { signoutUserRouter } from './routes/signout';
 import { signinUserRouter } from './routes/signin';
 import { signupUserRouter } from './routes/signup';
-import { errorHandler } from './middlewares/error-handler';
-import { NotFoundError } from './errors/not-found-error';
 
 const app = express();
 

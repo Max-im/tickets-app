@@ -1,10 +1,9 @@
 import express, {NextFunction, Request, Response} from 'express';
 import { body } from 'express-validator';
 import jwt from 'jsonwebtoken';
+import { BadRequest, validateBody } from "@mpozhydaiev-tickets/common"
 
 import { User } from '../models/User'; 
-import { BadRequest } from '../errors/badRequest';
-import { validateBody } from '../middlewares/validate-body';
 
 const router = express.Router();
 
