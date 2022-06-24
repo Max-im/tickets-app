@@ -3,6 +3,7 @@ import { app } from '../../app';
 import mongoose from 'mongoose';
 import { Ticket } from '../../models/Ticket';
 import { createTicket } from './list.test';
+import { natsWrapper } from '../../nats-wrapper';
 
 const url = '/api/tickets';
 
@@ -76,4 +77,24 @@ it ('updates ticket privided valid inputs', async () => {
 
     expect(updateResponse.body.title).toEqual('new-title');
     expect(updateResponse.body.price).toEqual(100);
+});
+
+it('publishes event', async () => {
+    const cookie = global.signin()
+    
+    const response = await request(app)
+        .post(url)
+        .set('Cookie', cookie)
+        .send({ title: "title", price: 20 })
+        .expect(201);
+
+    await request(app)
+        .put(`${url}/${response.body.id}`)
+        .set('Cookie', cookie)
+        .send({title: "new-title", price: 100})
+        .expect(200);
+
+
+    expect(natsWrapper.client.publish).toHaveBeenCalled();
+
 });
