@@ -29,13 +29,9 @@ router.put(
       throw new BadRequest('Error during getting the ticket data');
     }
 
-    if (!ticket) {
-      throw new NotFoundError();
-    }
-
-    if (ticket.userId !== req.currentUser!.id) {
-      throw new UnauthError();
-    }
+    if (!ticket) throw new NotFoundError();
+    if (ticket.orderId) throw new BadRequest('The Ticket is locked now');
+    if (ticket.userId !== req.currentUser!.id) throw new UnauthError();
 
     ticket.set({
       title: req.body.title,
