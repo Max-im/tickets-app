@@ -15,7 +15,6 @@ spec:
       containers:
         - name: auth
           image: mpozhydaiev/tickets_auth
-          # kubectl create secret generic jwt-secret --from-literal=jwt=<secretString>
           env: 
             - name: MONGO_URI
               value: 'mongodb://auth-mongo-srv:27017/auth'

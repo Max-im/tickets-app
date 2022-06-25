@@ -26,14 +26,6 @@ build:
           - src: 'src/**/*.ts'
             dest: .
 
-    - image: mpozhydaiev/tickets_client
-      context: client
-      docker:
-        dockerfile: Dockerfile
-      sync:
-        manual:
-          - src: '**/*.js'
-            dest: .
     - image: mpozhydaiev/tickets_orders
       context: orders
       docker:
@@ -42,4 +34,23 @@ build:
         manual:
           - src: 'src/**/*.ts'
             dest: .
+
+    - image: mpozhydaiev/tickets_expiration
+      context: expiration
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: 'src/**/*.ts'
+            dest: .
+
+    - image: mpozhydaiev/tickets_client
+      context: client
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: '**/*.js'
+            dest: .
+
     
