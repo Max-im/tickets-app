@@ -1,33 +1,40 @@
 import mongoose from 'mongoose';
+import { updateIfCurrentPlugin } from 'mongoose-update-if-current';
 
 interface ITicket {
-    title: string;
-    price: number;
-    userId: string;
+  title: string;
+  price: number;
+  userId: string;
+  version: number;
 }
 
-const ticketsSchema = new mongoose.Schema<ITicket>({
+const ticketsSchema = new mongoose.Schema<ITicket>(
+  {
     title: {
-        type: String,
-        required: true
+      type: String,
+      required: true,
     },
     price: {
-        type: Number,
-        required: true
+      type: Number,
+      required: true,
     },
     userId: {
-        type: String,
-        required: true
-    }
-}, {
+      type: String,
+      required: true,
+    },
+  },
+  {
     toJSON: {
-        transform(doc, ret) {
-            ret.id = ret._id;
-            delete ret._id;
-            delete ret.__v;
-        }
-    }
-});
+      transform(doc, ret) {
+        ret.id = ret._id;
+        delete ret._id;
+      },
+    },
+  }
+);
+
+ticketsSchema.set('versionKey', 'version');
+ticketsSchema.plugin(updateIfCurrentPlugin);
 
 const Ticket = mongoose.model<ITicket>('Ticket', ticketsSchema);
 

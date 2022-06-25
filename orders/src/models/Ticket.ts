@@ -1,4 +1,5 @@
-import mongoose from 'mongoose';
+import mongoose, { Schema } from 'mongoose';
+import { updateIfCurrentPlugin } from 'mongoose-update-if-current';
 import { Order, OrderStatus } from './Order';
 
 interface ITicket {
@@ -9,7 +10,7 @@ interface ITicket {
   isReserved: () => boolean;
 }
 
-const ticketsSchema = new mongoose.Schema<ITicket>(
+const ticketsSchema = new Schema<ITicket>(
   {
     title: {
       type: String,
@@ -31,6 +32,22 @@ const ticketsSchema = new mongoose.Schema<ITicket>(
     },
   }
 );
+
+ticketsSchema.set('versionKey', 'version');
+
+ticketsSchema.plugin(updateIfCurrentPlugin);
+// ticketsSchema.pre('save', function (done) {
+//   this.$where = {
+//     version: this.get('version') - 1,
+//   };
+
+//   done();
+// });
+
+// ticketsSchema.methods.findByEvent = async function (event: { id: string; version: number }) {
+//   const previousVersion = event.version - 1;
+//   return Ticket.findOne({ _id: event.id, version: previousVersion });
+// };
 
 ticketsSchema.methods.isReserved = async function () {
   const ticketReserved = await Order.findOne({
