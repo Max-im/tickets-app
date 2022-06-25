@@ -9,9 +9,9 @@ declare global {
 jest.mock('../nats-wrapper');
 
 let mongo: any;
+jest.setTimeout(1000 * 100);
 
 beforeAll(async () => {
-  jest.setTimeout(1000 * 100);
   process.env.JWT_KEY = 'test_string';
   mongo = await MongoMemoryServer.create();
 
@@ -30,7 +30,6 @@ beforeEach(async () => {
 });
 
 afterAll(async () => {
-  jest.setTimeout(1000 * 100);
   await mongo.stop();
   await mongoose.connection.close();
 });
