@@ -51,7 +51,7 @@
 
 internal service with no endpoints, listen and publish events to make orders expire
 
-## Using
+## Usage
 
 - clone the repo
 - install dependencies for every service
