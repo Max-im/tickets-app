@@ -5,6 +5,7 @@ interface ITicket {
   title: string;
   price: number;
   userId: string;
+  orderId: string;
   version: number;
 }
 
@@ -21,6 +22,9 @@ const ticketsSchema = new mongoose.Schema<ITicket>(
     userId: {
       type: String,
       required: true,
+    },
+    orderId: {
+      type: String,
     },
   },
   {

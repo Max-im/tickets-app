@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 import { app } from './app';
+import { OrderCreatedListener } from './events/listeners/order-created-listener';
 import { natsWrapper } from './nats-wrapper';
 
 const launch = async () => {
@@ -16,21 +17,20 @@ const launch = async () => {
       process.env.NATS_URL
     );
 
-
-    natsWrapper.client.on('close' ,() => {
-        process.exit();
+    natsWrapper.client.on('close', () => {
+      process.exit();
     });
 
     process.on('SIGINT', () => natsWrapper.client.close());
     process.on('SIGTERM', () => natsWrapper.client.close());
 
+    new OrderCreatedListener(natsWrapper.client).listen();
+
     await mongoose.connect(process.env.MONGO_URI);
     app.listen(3000, () => console.log('tickets service run'));
   } catch (err) {
-    console.error(err)
+    console.error(err);
   }
-}
+};
 
 launch();
-
-
