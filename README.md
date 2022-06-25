@@ -14,6 +14,8 @@
 - TypeScript
 - MongoDB
 - Jest
+- NATS streaming
+- NPM module for sharing common code
 
 ## auth service
 
@@ -35,6 +37,13 @@
 
 ## orders service
 
+| method | url             | body               | description        |
+| ------ | --------------- | ------------------ | ------------------ |
+| GET    | /api/orders     | -                  | a user orders list |
+| GET    | /api/orders/:id | -                  | get order by id    |
+| POST   | /api/orders     | {ticketId: string} | create new order   |
+| DELETE | /api/orders/:id | -                  | delete order by id |
+
 ## payments service
 
 ## expiration service
@@ -42,3 +51,4 @@
 ## Using
 
 - clone the repo
+- kubectl create secret generic jwt-secret --from-literal=jwt=<secretString>

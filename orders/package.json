@@ -1,12 +1,11 @@
 {
-  "name": "tickets-auth",
+  "name": "tickets-orders",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "docker:build": "docker build -t mpozhydaiev/tickets_auth .",
-    "docker:push": "docker push mpozhydaiev/tickets_auth",
-    "addSecret": "kubectl create secret generic jwt-secret --from-literal=jwt=<secretString>",
+    "docker:build": "docker build -t mpozhydaiev/tickets_orders .",
+    "docker:push": "docker push mpozhydaiev/tickets_orders",
     "start": "ts-node-dev src/index.ts",
     "test": "jest --watchAll --no-cache"
   },
@@ -34,6 +33,7 @@
     "jsonwebtoken": "^8.5.1",
     "mongodb-memory-server": "^8.7.0",
     "mongoose": "^6.4.0",
+    "node-nats-streaming": "^0.3.2",
     "ts-node-dev": "^2.0.0"
   },
   "devDependencies": {
