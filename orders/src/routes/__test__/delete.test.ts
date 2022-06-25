@@ -62,3 +62,24 @@ it('returns 401 if user try to delete another user order', async () => {
 
   await request(app).delete(`${url}/${order.id}`).set('Cookie', user2).send({}).expect(401);
 });
+
+it('publishes event', async () => {
+  const ticket = new Ticket({ title: 'ticket-1', price: 20 });
+
+  await ticket.save();
+  const user = global.signin();
+
+  const { body: order } = await request(app)
+    .post(url)
+    .set('Cookie', user)
+    .send({ ticketId: ticket.id })
+    .expect(201);
+
+  await request(app).delete(`${url}/${order.id}`).set('Cookie', user).send({}).expect(204);
+
+  const canceledOrder = await Order.findById(order.id);
+
+  expect(canceledOrder!.status).toEqual(OrderStatus.Canceled);
+
+  expect(natsWrapper.client.publish).toHaveBeenCalled();
+});

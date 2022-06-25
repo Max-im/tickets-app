@@ -2,6 +2,7 @@ import mongoose from 'mongoose';
 import { Order, OrderStatus } from './Order';
 
 interface ITicket {
+  _id: mongoose.Types.ObjectId;
   title: string;
   price: number;
   version: number;
@@ -43,4 +44,4 @@ ticketsSchema.methods.isReserved = async function () {
 
 const Ticket = mongoose.model<ITicket>('Ticket', ticketsSchema);
 
-export { Ticket };
+export { Ticket, ITicket };

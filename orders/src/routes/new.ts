@@ -4,6 +4,8 @@ import { Router, Request, Response } from 'express';
 import { body } from 'express-validator';
 import { Order } from '../models/Order';
 import { Ticket } from '../models/Ticket';
+import { OrderCreatedPublisher } from '../events/publishers/order-create-publisher';
+import { natsWrapper } from '../nats-wrapper';
 
 const EXPERATION_ORDER_SECONDS = 15 * 60;
 const router = Router();
@@ -34,6 +36,17 @@ router.post(
       ticket,
     });
     await order.save();
+
+    new OrderCreatedPublisher(natsWrapper.client).publish({
+      id: order.id,
+      userId: order.userId,
+      status: order.status,
+      expiresAt: order.expiresAt.toISOString(),
+      ticket: {
+        id: ticket.id,
+        price: ticket.price,
+      },
+    });
 
     res.status(201).send(order);
   }

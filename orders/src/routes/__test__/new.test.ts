@@ -68,4 +68,15 @@ it('create new order', async () => {
     .expect(201);
 });
 
-it.todo('publishes event');
+it('publishes event', async () => {
+  const ticket = new Ticket({ title: 'concert', price: 20 });
+  await ticket.save();
+
+  await request(app)
+    .post(url)
+    .set('Cookie', global.signin())
+    .send({ ticketId: ticket.id })
+    .expect(201);
+
+  expect(natsWrapper.client.publish).toHaveBeenCalled();
+});

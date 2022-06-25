@@ -1,12 +1,12 @@
 import mongoose from 'mongoose';
 import { OrderStatus } from '@mpozhydaiev-tickets/common';
-import { Ticket } from './Ticket';
+import { ITicket } from './Ticket';
 
 interface IOrder {
   status: OrderStatus;
   userId: string;
   expiresAt: Date;
-  ticket: typeof Ticket;
+  ticket: ITicket;
 }
 
 const orderSchema = new mongoose.Schema<IOrder>(
