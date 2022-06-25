@@ -13,6 +13,7 @@
 - Node
 - TypeScript
 - MongoDB
+- Redis
 - Jest
 - NATS streaming
 - NPM module for sharing common code
@@ -48,7 +49,14 @@
 
 ## expiration service
 
+internal service with no endpoints, listen and publish events to make orders expire
+
 ## Using
 
 - clone the repo
-- kubectl create secret generic jwt-secret --from-literal=jwt=<secretString>
+- install dependencies for every service
+- make sure you wire up kubernetes minikube and skaffold
+- set host `tickets.net` on your local machine equal to ingress-nginx ip (run `minikube ip` to see your minikube ip address)
+- set up jwt-secret value on kubernetes env `kubectl create secret generic jwt-secret --from-literal=jwt=<secretString>`
+- run `skaffold dev` for run on your local machine
+- open https://tickets.net
