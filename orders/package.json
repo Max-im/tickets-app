@@ -1,12 +1,11 @@
 {
-  "name": "tickets-ticket",
+  "name": "tickets-orders",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "docker:build": "docker build -t mpozhydaiev/tickets_ticket .",
-    "docker:push": "docker push mpozhydaiev/tickets_ticket",
-    "addSecret": "kubectl create secret generic jwt-secret --from-literal=jwt=<secretString>",
+    "docker:build": "docker build -t mpozhydaiev/tickets_orders .",
+    "docker:push": "docker push mpozhydaiev/tickets_orders",
     "start": "ts-node-dev src/index.ts",
     "test": "jest --watchAll --no-cache"
   },
