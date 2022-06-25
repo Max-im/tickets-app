@@ -48,3 +48,14 @@ it('acks the message', async () => {
 
   expect(msg.ack).toHaveBeenCalled();
 });
+
+it('throw error if ack function was not called', async () => {
+  const { listener, data, msg } = await setup();
+
+  data.version = 10;
+  try {
+    await listener.onMessage(data, msg);
+  } catch (err) {}
+
+  expect(msg.ack).not.toHaveBeenCalled();
+});
