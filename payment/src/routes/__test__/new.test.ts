@@ -113,11 +113,13 @@ it('return 400 if the order was cancelled', async () => {
 it('return 201 and call stripe.charges.create if the valid data supplied', async () => {
   const userId = new mongoose.Types.ObjectId().toString();
 
+  const price = Math.floor(Math.random() * 100000);
+
   const order = new Order({
     id: new mongoose.Types.ObjectId(),
     status: OrderStatus.Created,
     userId,
-    price: 50,
+    price,
     version: 0,
   });
 
@@ -135,6 +137,16 @@ it('return 201 and call stripe.charges.create if the valid data supplied', async
   expect(chargeOptions.source).toEqual('tok_visa');
   expect(chargeOptions.amount).toEqual(order.price * 100);
   expect(chargeOptions.currency).toEqual('usd');
+
+  // using api call to Stripe approach insead of mocking
+  const mockedStripe = true;
+  if (!mockedStripe) {
+    const stripeCharges = await stripe.charges.list({ limit: 50 });
+
+    const stripeCharge = stripeCharges.data.find((charge) => charge.amount === price * 100);
+
+    expect(stripeCharge).toBeDefined();
+  }
 });
 
 it.todo('publishes event');
