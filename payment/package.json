@@ -1,11 +1,11 @@
 {
-  "name": "tickets-orders",
+  "name": "tickets-payment",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "docker:build": "docker build -t mpozhydaiev/tickets_orders .",
-    "docker:push": "docker push mpozhydaiev/tickets_orders",
+    "docker:build": "docker build -t mpozhydaiev/tickets_payment .",
+    "docker:push": "docker push mpozhydaiev/tickets_payment",
     "start": "ts-node-dev src/index.ts",
     "test": "jest --watchAll --no-cache"
   },
@@ -33,8 +33,8 @@
     "jsonwebtoken": "^8.5.1",
     "mongodb-memory-server": "^8.7.0",
     "mongoose": "^6.4.0",
-    "mongoose-update-if-current": "^1.4.0",
     "node-nats-streaming": "^0.3.2",
+    "stripe": "^9.10.0",
     "ts-node-dev": "^2.0.0"
   },
   "devDependencies": {

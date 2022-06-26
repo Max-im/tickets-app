@@ -27,7 +27,7 @@
 | POST   | /api/users/signout     | -                                 | logout user           |
 | GET    | /api/users/currentuser | -                                 | get current user data |
 
-## tickets service
+## ticket service
 
 | method | url              | body                           | description      |
 | ------ | ---------------- | ------------------------------ | ---------------- |
@@ -45,7 +45,11 @@
 | POST   | /api/orders     | {ticketId: string} | create new order   |
 | DELETE | /api/orders/:id | -                  | delete order by id |
 
-## payments service
+## payment service
+
+| method | url          | body                             | description    |
+| ------ | ------------ | -------------------------------- | -------------- |
+| POST   | /api/payment | {token: string, orderId: string} | handle payment |
 
 ## expiration service
 
@@ -58,5 +62,6 @@ internal service with no endpoints, listen and publish events to make orders exp
 - make sure you wire up kubernetes minikube and skaffold
 - set host `tickets.net` on your local machine equal to ingress-nginx ip (run `minikube ip` to see your minikube ip address)
 - set up jwt-secret value on kubernetes env `kubectl create secret generic jwt-secret --from-literal=jwt=<secretString>`
+- set up stripe-secret value on kubernetes env `kubectl create secret generic stripe-secret --from-literal STRIPE_KEY=<secretString>`
 - run `skaffold dev` for run on your local machine
 - open https://tickets.net
