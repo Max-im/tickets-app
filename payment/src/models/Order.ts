@@ -1,6 +1,5 @@
 import mongoose from 'mongoose';
 import { OrderStatus } from '@mpozhydaiev-tickets/common';
-import { updateIfCurrentPlugin } from 'mongoose-update-if-current';
 
 interface IOrder {
   status: OrderStatus;
@@ -37,7 +36,6 @@ const orderSchema = new mongoose.Schema<IOrder>(
 );
 
 orderSchema.set('versionKey', 'version');
-orderSchema.plugin(updateIfCurrentPlugin);
 
 const Order = mongoose.model<IOrder>('Order', orderSchema);
 

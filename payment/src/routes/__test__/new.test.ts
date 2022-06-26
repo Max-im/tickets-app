@@ -132,15 +132,17 @@ it('return 201 and call stripe.charges.create if the valid data supplied', async
     .send({ token: 'tok_visa', orderId: order.id.toString() })
     .expect(201);
 
-  expect(stripe.charges.create).toHaveBeenCalled();
+  const mockedStripe = true;
+  if (mockedStripe) {
+    expect(stripe.charges.create).toHaveBeenCalled();
 
-  const chargeOptions = (stripe.charges.create as jest.Mock).mock.calls[0][0];
-  expect(chargeOptions.source).toEqual('tok_visa');
-  expect(chargeOptions.amount).toEqual(order.price * 100);
-  expect(chargeOptions.currency).toEqual('usd');
+    const chargeOptions = (stripe.charges.create as jest.Mock).mock.calls[0][0];
+    expect(chargeOptions.source).toEqual('tok_visa');
+    expect(chargeOptions.amount).toEqual(order.price * 100);
+    expect(chargeOptions.currency).toEqual('usd');
+  }
 
   // using api call to Stripe approach insead of mocking
-  const mockedStripe = true;
   if (!mockedStripe) {
     const stripeCharges = await stripe.charges.list({ limit: 50 });
 
