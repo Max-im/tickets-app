@@ -11,6 +11,7 @@ import {
 import { Router, Request, Response } from 'express';
 import { body } from 'express-validator';
 import { Order } from '../models/Order';
+import { Payment } from '../models/Payment';
 import { natsWrapper } from '../nats-wrapper';
 
 const router = Router();
@@ -34,11 +35,19 @@ router.post(
     if (req!.currentUser!.id !== order.userId) throw new UnauthError();
     if (order.status === OrderStatus.Canceled) throw new BadRequest('Order was cancelled');
 
-    await stripe.charges.create({
+    const charge = await stripe.charges.create({
       currency: 'usd',
       amount: order.price * 100,
       source: token,
     });
+
+    // as example to another approach to work with mongoose to make simplier work with ts
+    const payment = Payment.build({
+      orderId,
+      stripeId: charge.id,
+    });
+
+    await payment.save();
 
     res.status(201).send({ success: true });
   }

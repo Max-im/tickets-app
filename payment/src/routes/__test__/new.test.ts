@@ -5,6 +5,7 @@ import { Order } from '../../models/Order';
 import { natsWrapper } from '../../nats-wrapper';
 import { OrderStatus } from '@mpozhydaiev-tickets/common';
 import { stripe } from '../../stripe';
+import { Payment } from '../../models/Payment';
 
 jest.mock('../../stripe');
 
@@ -146,6 +147,9 @@ it('return 201 and call stripe.charges.create if the valid data supplied', async
     const stripeCharge = stripeCharges.data.find((charge) => charge.amount === price * 100);
 
     expect(stripeCharge).toBeDefined();
+
+    const payment = await Payment.findOne({ orderId: order.id, stripeId: stripeCharge!.id });
+    expect(payment).not.toBeNull();
   }
 });
 
