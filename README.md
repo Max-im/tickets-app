@@ -27,7 +27,7 @@
 | POST   | /api/users/signout     | -                                 | logout user           |
 | GET    | /api/users/currentuser | -                                 | get current user data |
 
-## tickets service
+## ticket service
 
 | method | url              | body                           | description      |
 | ------ | ---------------- | ------------------------------ | ---------------- |
@@ -45,7 +45,7 @@
 | POST   | /api/orders     | {ticketId: string} | create new order   |
 | DELETE | /api/orders/:id | -                  | delete order by id |
 
-## payments service
+## payment service
 
 ## expiration service
 

@@ -20,10 +20,10 @@ spec:
               value: http://nats-srv:4222
             - name: NATS_CLUSTER_ID
               value: tickets
+            - name: REDIS_HOST
+              value: expiration-redis-srv
             - name: NATS_CLIENT_ID
               valueFrom:  
                 fieldRef:
                   fieldPath: metadata.name
-            - name: REDIS_HOST
-              value: expiration-redis-srv
 

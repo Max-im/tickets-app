@@ -1,7 +1,10 @@
-import mongoose, { Schema } from 'mongoose';
+import mongoose, { Schema, Model } from 'mongoose';
 import { updateIfCurrentPlugin } from 'mongoose-update-if-current';
 import { Order, OrderStatus } from './Order';
 
+// interface IModel extends Model<ITicket> {
+//   findByEvent: (attr: { id: string; version: number }) => ITicket | null;
+// }
 interface ITicket {
   _id: mongoose.Types.ObjectId;
   title: string;
@@ -44,7 +47,7 @@ ticketsSchema.plugin(updateIfCurrentPlugin);
 //   done();
 // });
 
-// ticketsSchema.methods.findByEvent = async function (event: { id: string; version: number }) {
+// ticketsSchema.statics.findByEvent = async function (event: { id: string; version: number }) {
 //   const previousVersion = event.version - 1;
 //   return Ticket.findOne({ _id: event.id, version: previousVersion });
 // };

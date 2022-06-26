@@ -44,6 +44,15 @@ build:
           - src: 'src/**/*.ts'
             dest: .
 
+    - image: mpozhydaiev/tickets_payment
+      context: payment
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: 'src/**/*.ts'
+            dest: .
+
     - image: mpozhydaiev/tickets_client
       context: client
       docker:
