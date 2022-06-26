@@ -2,10 +2,10 @@
 
 ## Microservice approach to application building
 
-![auth test](https://github.com/max-im/tickets-app/actions/workflows/auth-test.yml/badge.svg)
-![orders test](https://github.com/max-im/tickets-app/actions/workflows/orders-test.yml/badge.svg)
-![payment test](https://github.com/max-im/tickets-app/actions/workflows/payment-test.yml/badge.svg)
-![ticket test](https://github.com/max-im/tickets-app/actions/workflows/ticket-test.yml/badge.svg)
+![auth test](https://github.com/max-im/tickets-app/actions/workflows/auth-test.yaml/badge.svg)
+![orders test](https://github.com/max-im/tickets-app/actions/workflows/orders-test.yaml/badge.svg)
+![payment test](https://github.com/max-im/tickets-app/actions/workflows/payment-test.yaml/badge.svg)
+![ticket test](https://github.com/max-im/tickets-app/actions/workflows/ticket-test.yaml/badge.svg)
 
 ## Features
 
