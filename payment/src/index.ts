@@ -2,6 +2,7 @@ import mongoose from 'mongoose';
 import { app } from './app';
 import { natsWrapper } from './nats-wrapper';
 import { OrderCreatedListener } from './events/listeners/order-created-listener';
+import { OrderCanceledListener } from './events/listeners/order-canceled-listener';
 
 const launch = async () => {
   if (!process.env.JWT_KEY) throw new Error('JWT_KEY must be defined');
@@ -25,6 +26,7 @@ const launch = async () => {
     process.on('SIGTERM', () => natsWrapper.client.close());
 
     new OrderCreatedListener(natsWrapper.client).listen();
+    new OrderCanceledListener(natsWrapper.client).listen();
 
     await mongoose.connect(process.env.MONGO_URI);
     app.listen(3000, () => console.log('tickets service run'));
