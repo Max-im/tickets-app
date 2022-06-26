@@ -2,7 +2,10 @@
 
 ## Microservice approach to application building
 
-![example workflow](https://github.com/max-im/multi_docker_app_deploy_flow/actions/workflows/deploy-aws.yml/badge.svg)
+![auth test](https://github.com/max-im/tickets-app/actions/workflows/auth-test.yml/badge.svg)
+![orders test](https://github.com/max-im/tickets-app/actions/workflows/orders-test.yml/badge.svg)
+![payment test](https://github.com/max-im/tickets-app/actions/workflows/payment-test.yml/badge.svg)
+![ticket test](https://github.com/max-im/tickets-app/actions/workflows/ticket-test.yml/badge.svg)
 
 ## Features
 

@@ -8,7 +8,7 @@
     "docker:push": "docker push mpozhydaiev/tickets_auth",
     "addSecret": "kubectl create secret generic jwt-secret --from-literal=jwt=<secretString>",
     "start": "ts-node-dev src/index.ts",
-    "test": "jest --watchAll --no-cache"
+    "test": "jest"
   },
   "jest": {
     "preset": "ts-jest",
