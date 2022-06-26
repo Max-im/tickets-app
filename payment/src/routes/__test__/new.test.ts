@@ -154,11 +154,3 @@ it('return 201 and call stripe.charges.create if the valid data supplied', async
     expect(payment).not.toBeNull();
   }
 });
-
-it.todo('publishes event');
-// , async () => {
-//   const title = 'testTitle';
-//   const price = 20;
-//   await request(app).post(url).set('Cookie', global.signin()).send({ title, price }).expect(201);
-//   expect(natsWrapper.client.publish).toHaveBeenCalled();
-// });
