@@ -1,0 +1,25 @@
+name: ticket-test
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Copy repo code
+      uses: actions/checkout@v1
+
+    - name: Install Dependencies
+      run: |
+        cd ./ticket
+        npm install
+  
+    - name: Run Tests
+      run: |
+        cd ./ticket
+        npm run test
