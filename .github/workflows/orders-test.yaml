@@ -1,0 +1,25 @@
+name: orders-test
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Copy repo code
+      uses: actions/checkout@v1
+
+    - name: Install Dependencies
+      run: |
+        cd ./orders
+        npm install
+  
+    - name: Run Tests
+      run: |
+        cd ./orders
+        npm run test
