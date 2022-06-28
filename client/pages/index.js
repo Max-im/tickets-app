@@ -8,4 +8,8 @@ const Index = ({ currentUser }) => {
   );
 };
 
+Index.getInitialProps = async (context, client, currentUser) => {
+  return {};
+};
+
 export default Index;
