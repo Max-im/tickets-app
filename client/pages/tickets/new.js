@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
 import useRequest from '../../hooks/useRequest';
+import { useRouter } from 'next/router';
 
 const NewTicket = () => {
   const [title, setTitle] = useState('');
   const [price, setPrice] = useState('');
+  const router = useRouter();
 
   const { doRequest, errors } = useRequest({
     body: { title, price },
     url: '/api/tickets',
-    onSuccess: (ticket) => console.log('success', ticket),
+    onSuccess: (ticket) => router.push('/'),
   });
 
   const formatPrice = () => {
