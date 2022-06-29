@@ -67,8 +67,8 @@ internal service with no endpoints, listen and publish events to make orders exp
 - clone the repo
 - install dependencies for every service
 - make sure you wire up kubernetes minikube and skaffold
-- set host `tickets.net` on your local machine equal to ingress-nginx ip (run `minikube ip` to see your minikube ip address)
+- set host `tickets.dev` on your local machine equal to ingress-nginx ip (run `minikube ip` to see your minikube ip address)
 - set up jwt-secret value on kubernetes env `kubectl create secret generic jwt-secret --from-literal=jwt=<secretString>`
 - set up stripe-secret value on kubernetes env `kubectl create secret generic stripe-secret --from-literal STRIPE_KEY=<secretString>`
 - run `skaffold dev` for run on your local machine
-- open https://tickets.net
+- open https://tickets.dev

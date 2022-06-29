@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 
 const Index = ({ currentUser, tickets }) => {
   return (
@@ -9,6 +10,7 @@ const Index = ({ currentUser, tickets }) => {
           <tr>
             <th>Title</th>
             <th>Price</th>
+            <th>Link</th>
           </tr>
         </thead>
         <tbody>
@@ -16,6 +18,11 @@ const Index = ({ currentUser, tickets }) => {
             <tr key={id}>
               <td>{title}</td>
               <td>{price}</td>
+              <td>
+                <Link href={`/tickets/${id}`}>
+                  <a className='navbar-brand'>View</a>
+                </Link>
+              </td>
             </tr>
           ))}
         </tbody>
