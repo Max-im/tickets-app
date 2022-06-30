@@ -21,6 +21,10 @@
 - NATS streaming
 - NPM module for sharing common code
 
+## client service
+
+Next app to of the app
+
 ## auth service
 
 | method | url                    | body                              | description           |

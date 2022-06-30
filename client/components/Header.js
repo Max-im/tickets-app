@@ -4,6 +4,8 @@ export default function Header({ currentUser }) {
   const links = [
     !currentUser && { label: 'Sign Up', url: '/auth/signup' },
     !currentUser && { label: 'Sign In', url: '/auth/signin' },
+    currentUser && { label: 'Sell Ticket', url: '/tickets/new' },
+    currentUser && { label: 'My Orders', url: '/orders' },
     currentUser && { label: 'Sign Out', url: '/auth/signout' },
   ];
 
