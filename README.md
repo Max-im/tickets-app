@@ -11,7 +11,6 @@
 
 - Kubernetes
 - Docker
-- Nginx
 - Next.js
 - Node
 - TypeScript
