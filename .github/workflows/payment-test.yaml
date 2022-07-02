@@ -1,10 +1,11 @@
 name: payment-test
 
 on:
-  push:
-    branches: [ master ]
   pull_request:
-    branches: [ master ]
+    branches: 
+      - master
+    paths:
+      - 'payment/**'
 
 jobs:
   test:
@@ -12,14 +13,6 @@ jobs:
 
     steps:
     - name: Copy repo code
-      uses: actions/checkout@v1
+      uses: actions/checkout@v2
 
-    - name: Install Dependencies
-      run: |
-        cd ./payment
-        npm install
-  
-    - name: Run Tests
-      run: |
-        cd ./payment
-        npm run test
+      run: cd ./payment && npm i && npm run test:ci

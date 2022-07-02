@@ -7,7 +7,8 @@
     "docker:build": "docker build -t mpozhydaiev/tickets_payment .",
     "docker:push": "docker push mpozhydaiev/tickets_payment",
     "start": "ts-node-dev src/index.ts",
-    "test": "jest"
+    "test": "jest --watchAll --no-cache",
+    "test:ci": "jest"
   },
   "jest": {
     "preset": "ts-jest",
