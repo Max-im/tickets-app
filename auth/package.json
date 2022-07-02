@@ -19,7 +19,7 @@
     ]
   },
   "keywords": [],
-  "author": "",
+  "author": "Maksym Pozhydaiev <pogidaevmo@gmail.com>",
   "license": "ISC",
   "dependencies": {
     "@mpozhydaiev-tickets/common": "0.0.10",
