@@ -12,7 +12,5 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Copy repo code
-      uses: actions/checkout@v2
-
-      run: cd ./payment && npm i && npm run test:ci
+    - uses: actions/checkout@v2
+    - run: cd ./payment && npm i && npm run test:ci
